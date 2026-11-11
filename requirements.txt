@@ -1,0 +1,6 @@
+torch-directml
+torchvision
+numpy
+matplotlib
+scikit-learn
+pyyaml
