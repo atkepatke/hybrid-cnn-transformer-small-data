@@ -55,7 +55,8 @@ def main(cfg):
     else:
         kind = "hyb" if cfg["attn_type"] == "attention" else "ctrl"
         tag = "cnn" if cfg["attn_after"] is None else f"{kind}{cfg['attn_after']}"
-    run_name = f"{tag}_n{cfg['n_train_per_class']}_d{cfg['data_seed']}_s{cfg['seed']}"
+    epochs_tag = "" if cfg["epochs"] == 30 else f"_e{cfg['epochs']}"
+    run_name = f"{tag}_n{cfg['n_train_per_class']}_d{cfg['data_seed']}{epochs_tag}_s{cfg['seed']}"
     out_dir = Path("results") / run_name
     out_dir.mkdir(parents=True, exist_ok=True)
     if (out_dir / "final.pt").exists():     # finished run: don't redo it
@@ -82,7 +83,7 @@ def main(cfg):
         print(f"epoch {epoch:2d} | train loss {tr_loss:.3f} acc {tr_acc:.3f} | "
               f"val loss {va_loss:.3f} acc {va_acc:.3f} | {time.time() - t0:.1f}s")
         
-    torch.save(model.state_dict(), out_dir / "final.pt")   # needed for test evaluation later
+    torch.save({k: v.cpu() for k, v in model.state_dict().items()}, out_dir / "final.pt")   # needed for test evaluation later
     
     # save the log and the curves
     with open(out_dir / "metrics.csv", "w", newline="") as f:
