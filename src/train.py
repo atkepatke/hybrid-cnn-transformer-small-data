@@ -83,7 +83,7 @@ def main(cfg):
         print(f"epoch {epoch:2d} | train loss {tr_loss:.3f} acc {tr_acc:.3f} | "
               f"val loss {va_loss:.3f} acc {va_acc:.3f} | {time.time() - t0:.1f}s")
         
-    torch.save({k: v.cpu() for k, v in model.state_dict().items()}, out_dir / "final.pt")   # needed for test evaluation later
+    #torch.save({k: v.cpu() for k, v in model.state_dict().items()}, out_dir / "final.pt")   # needed for test evaluation later
     
     # save the log and the curves
     with open(out_dir / "metrics.csv", "w", newline="") as f:
@@ -99,7 +99,8 @@ def main(cfg):
     ax[1].set_title("Accuracy"); ax[1].set_xlabel("epoch"); ax[1].legend()
     fig.tight_layout()
     fig.savefig(out_dir / "curves.png", dpi=150)
-    torch.save(model.state_dict(), out_dir / "final.pt") #for test evaluation
+    plt.close(fig)        # free memory; matters when many runs share one process
+    torch.save({k: v.cpu() for k, v in model.state_dict().items()}, out_dir / "final.pt")  # last: marks the run as finished
     print("saved to", out_dir)
 
 

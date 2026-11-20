@@ -18,7 +18,7 @@ CONFIG = {
     "epochs": 30,
     "lr": 1e-3,
     "weight_decay": 0.05,
-    "attn_after": 3,   # None = plain CNN; 2, 3 or 4 = attention at the end of that stage
+    "attn_after": None,   # None = plain CNN; 2, 3 or 4 = attention at the end of that stage
     "attn_depth": 1,      # number of Transformer blocks
     "num_heads": 4,
     "attn_type": "attention",   # "attention" or "conv" (the control)
