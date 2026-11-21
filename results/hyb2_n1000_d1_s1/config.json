@@ -1,0 +1,29 @@
+{
+  "dataset": "cifar10",
+  "n_train_per_class": 1000,
+  "data_seed": 1,
+  "batch_size": 128,
+  "num_classes": 10,
+  "in_channels": 3,
+  "image_size": 32,
+  "widths": [
+    32,
+    64,
+    128,
+    256
+  ],
+  "blocks_per_stage": 2,
+  "device": "dml",
+  "seed": 1,
+  "epochs": 30,
+  "lr": 0.001,
+  "weight_decay": 0.05,
+  "attn_after": 2,
+  "attn_depth": 1,
+  "num_heads": 4,
+  "attn_type": "attention",
+  "model": "cnn",
+  "patch_size": 4,
+  "vit_dim": 256,
+  "vit_depth": 5
+}
