@@ -2,7 +2,7 @@
 
 University Deep Learning course project. Investigates where self-attention should be inserted into a small CNN when training data is limited, compared with a plain CNN, a parameter-matched convolutional control, and a small Vision Transformer (ViT).
 
-**Status: work in progress.** Final results will be added after the full experiment batch.
+**Status: Finished.** Final results added.
 
 ## Setup
 - Python 3.10, PyTorch via `torch-directml` (AMD GPU on Windows). The code also runs on `cpu` or `cuda` (set `"device"` in `src/config.py`).
